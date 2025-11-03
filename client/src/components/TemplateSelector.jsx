@@ -16,6 +16,11 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
             preview: "Sleek design with strategic use of color and modern font choices"
         },
         {
+            id: "professional",
+            name: "Professional",
+            preview: "Industry-standard format with bold headings, perfect for ATS systems and recruiters"
+        },
+        {
             id: "minimal-image",
             name: "Minimal Image",
             preview: "Minimal design with a single image and clean typography"

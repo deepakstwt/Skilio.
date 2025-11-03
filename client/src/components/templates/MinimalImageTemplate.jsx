@@ -156,8 +156,8 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
 
                     {/* Projects */}
                     {data.project && data.project.length > 0 && (
-                        <section>
-                            <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: accentColor }}>
+                        <section className="mb-8">
+                            <h2 className="text-sm uppercase tracking-widest font-semibold mb-4" style={{ color: accentColor }}>
                                 PROJECTS
                             </h2>
                             <div className="space-y-4">
@@ -173,6 +173,43 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                                     <li key={i}>{line}</li>
                                                 ))}
                                             </ul>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* Certifications & Achievements */}
+                    {data.certifications && data.certifications.length > 0 && (
+                        <section>
+                            <h2 className="text-sm uppercase tracking-widest font-semibold mb-4" style={{ color: accentColor }}>
+                                CERTIFICATIONS & ACHIEVEMENTS
+                            </h2>
+                            <div className="space-y-4">
+                                {data.certifications.map((cert, index) => (
+                                    <div key={index}>
+                                        <div className="flex justify-between items-center mb-1">
+                                            <h3 className="font-semibold text-zinc-900">{cert.name}</h3>
+                                            {cert.issue_date && (
+                                                <span className="text-xs text-zinc-500">
+                                                    {formatDate(cert.issue_date)}
+                                                    {cert.expiry_date && ` - ${formatDate(cert.expiry_date)}`}
+                                                </span>
+                                            )}
+                                        </div>
+                                        {cert.issuing_organization && (
+                                            <p className="text-sm mb-1" style={{ color: accentColor }}>
+                                                {cert.issuing_organization}
+                                            </p>
+                                        )}
+                                        {cert.credential_id && (
+                                            <p className="text-xs text-zinc-500">ID: {cert.credential_id}</p>
+                                        )}
+                                        {cert.credential_url && (
+                                            <a href={cert.credential_url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">
+                                                View Credential
+                                            </a>
                                         )}
                                     </div>
                                 ))}

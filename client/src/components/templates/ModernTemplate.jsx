@@ -168,6 +168,42 @@ const ModernTemplate = ({ data, accentColor }) => {
 						</section>
 					)}
 				</div>
+
+				{/* Certifications & Achievements */}
+				{data.certifications && data.certifications.length > 0 && (
+					<section className="mb-8">
+						<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
+							Certifications & Achievements
+						</h2>
+
+						<div className="space-y-4">
+							{data.certifications.map((cert, index) => (
+								<div key={index} className="relative pl-6 border-l border-gray-200" style={{borderLeftColor: accentColor}}>
+									<div className="flex justify-between items-start mb-2">
+										<div>
+											<h3 className="text-lg font-medium text-gray-900">{cert.name}</h3>
+											{cert.issuing_organization && (
+												<p className="font-medium" style={{ color: accentColor }}>{cert.issuing_organization}</p>
+											)}
+											{cert.credential_id && (
+												<p className="text-sm text-gray-600">Credential ID: {cert.credential_id}</p>
+											)}
+											{cert.credential_url && (
+												<a href={cert.credential_url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline">
+													View Credential
+												</a>
+											)}
+										</div>
+										<div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded">
+											{cert.issue_date && formatDate(cert.issue_date)}
+											{cert.expiry_date && ` - ${formatDate(cert.expiry_date)}`}
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</section>
+				)}
 			</div>
 		</div>
 	);

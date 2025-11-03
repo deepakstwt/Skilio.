@@ -18,99 +18,134 @@ const Hero = () => {
 
   return (
     <>
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-gradient-to-b from-white via-blue-50/30 to-white">
         {/* Navbar */}
-        <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-            <a href="https://prebuiltui.com">
-                <img src="/logo.svg" alt="logo" className="h-11 w-auto"/>
+        <nav className="z-50 flex items-center justify-between w-full py-5 px-6 md:px-16 lg:px-24 xl:px-40 text-sm bg-white/80 backdrop-blur-md border-b border-blue-100/50 sticky top-0">
+            <a href="/" className="flex items-center gap-1.5 group">
+                <span className="font-bold text-slate-900 text-xl group-hover:text-blue-600 transition-colors">Skilio.</span>
+                <span className="w-2.5 h-2.5 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full shadow-lg shadow-blue-500/50"></span>
             </a>
 
-            <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
-                <a href="#" className="hover:text-green-600 transition">Home</a>
-                <a href="#features" className="hover:text-green-600 transition">Features</a>
-                <a href="#testimonials" className="hover:text-green-600 transition">Testimonials</a>
-                <a href="#cta" className="hover:text-green-600 transition">Contact</a>
+            <div className="hidden md:flex items-center gap-10 transition duration-500 text-slate-700 font-medium">
+                <a href="#" className="hover:text-blue-600 transition-colors relative group">
+                    Home
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#features" className="hover:text-blue-600 transition-colors relative group">
+                    Features
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#testimonials" className="hover:text-blue-600 transition-colors relative group">
+                    Testimonials
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#cta" className="hover:text-blue-600 transition-colors relative group">
+                    Contact
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                </a>
             </div>
 
-            <div className="flex gap-2">
-                <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
+            <div className="flex gap-3">
+                <Link to='/app?state=register' className="hidden md:block px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all rounded-full text-white font-medium shadow-lg shadow-blue-500/30 hover:shadow-purple-500/50" hidden={user}>
                     Get started
                 </Link>
-                <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={user}>
+                <Link to='/app?state=login' className="hidden md:block px-6 py-2.5 border-2 border-slate-300 active:scale-95 hover:border-blue-500 hover:text-blue-600 transition-all rounded-full text-slate-700 hover:bg-blue-50 font-medium" hidden={user}>
                     Login
                 </Link>
-                <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
+                <Link to='/app' className='hidden md:block px-8 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all rounded-full text-white font-medium shadow-lg shadow-blue-500/30 hover:shadow-purple-500/50' hidden={!user}>
                     Dashboard
                 </Link>
             </div>
 
-            <button onClick={() => setMenuOpen(true)} className="md:hidden active:scale-90 transition" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" className="lucide lucide-menu" >
+            <button onClick={() => setMenuOpen(true)} className="md:hidden active:scale-90 transition text-slate-700" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.5" className="lucide lucide-menu" >
                     <path d="M4 5h16M4 12h16M4 19h16" />
                 </svg>
             </button>
         </nav>
 
         {/* Mobile Menu */}
-        <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
-            <a href="#" className="text-white">Home</a>
-            <a href="#features" className="text-white">Features</a>
-            <a href="#testimonials" className="text-white">Testimonials</a>
-            <a href="#contact" className="text-white">Contact</a>
-            <button onClick={() => setMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex" >
-                X
-            </button>
+        <div className={`fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-all duration-300 ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`} >
+            <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col gap-6 min-w-[280px]">
+                <a href="#" className="text-slate-800 hover:text-blue-600 transition-colors font-medium" onClick={() => setMenuOpen(false)}>Home</a>
+                <a href="#features" className="text-slate-800 hover:text-blue-600 transition-colors font-medium" onClick={() => setMenuOpen(false)}>Features</a>
+                <a href="#testimonials" className="text-slate-800 hover:text-blue-600 transition-colors font-medium" onClick={() => setMenuOpen(false)}>Testimonials</a>
+                <a href="#cta" className="text-slate-800 hover:text-blue-600 transition-colors font-medium" onClick={() => setMenuOpen(false)}>Contact</a>
+                <button onClick={() => setMenuOpen(false)} className="mt-4 p-3 items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition text-white rounded-lg flex font-medium" >
+                    Close
+                </button>
+            </div>
         </div>
 
         {/* Hero Section */}
-        <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
-            <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
+        <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black overflow-hidden">
+            {/* Animated Background Gradients */}
+            <div className="absolute top-20 xl:top-10 -z-10 left-1/4 size-96 sm:size-[500px] xl:size-[600px] bg-gradient-to-br from-blue-400/40 via-indigo-300/30 to-purple-200/20 blur-[120px] animate-pulse"></div>
+            <div className="absolute top-40 right-1/4 -z-10 size-72 sm:size-96 xl:size-[500px] bg-gradient-to-br from-purple-300/30 via-pink-200/20 to-blue-200/20 blur-[100px] animate-pulse delay-1000"></div>
 
-            {/* Avatars + Stars */}
-            <div className="flex items-center mt-24">
-                <div className="flex -space-x-3 pr-3">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[1]" />
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="user1" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-2" />
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="user2" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[3]" />
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[4]" />
-                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="user5" className="size-8 rounded-full border-2 border-white hover:-translate-y-0.5 transition z-[5]" />
-                </div>
-
-                <div>
-                    <div className="flex ">
+            {/* Badge + Avatars */}
+            <div className="flex items-center justify-center mt-20 mb-8">
+                <div className="flex items-center gap-4 px-5 py-3 bg-white rounded-xl border-2 border-blue-200 shadow-sm">
+                    {/* Overlapping User Avatars */}
+                    <div className="flex -space-x-2">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user" className="size-8 object-cover rounded-full border-2 border-white shadow-sm" />
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="user" className="size-8 object-cover rounded-full border-2 border-white shadow-sm" />
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="user" className="size-8 object-cover rounded-full border-2 border-white shadow-sm" />
+                        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60" alt="user" className="size-8 object-cover rounded-full border-2 border-white shadow-sm" />
+                    </div>
+                    
+                    {/* Star Rating */}
+                    <div className="flex items-center gap-0.5">
                         {Array(5).fill(0).map((_, i) => (
-                            <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star text-transparent fill-green-600" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                            <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-400 fill-yellow-400" aria-hidden="true">
+                                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                            </svg>
                         ))}
                     </div>
-                    <p className="text-sm text-gray-700">
-                        Used by 10,000+ users
-                    </p>
+                    
+                    {/* Text */}
+                    <span className="text-sm font-semibold text-slate-800">
+                        <span className="font-bold">10,000+</span> happy users
+                    </span>
                 </div>
             </div>
 
             {/* Headline + CTA */}
-            <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
-                Land your dream job with <span className=" bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">AI-powered </span> resumes.
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold max-w-6xl text-center mt-6 md:leading-[1.1] animate-fade-in">
+                <div>Land your <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">dream job</span></div>
+                <div>with{' '}
+                    <span>
+                        <span className="text-blue-700">AI</span><span className="text-blue-700">-</span>
+                        <span className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-600 bg-clip-text text-transparent">powered</span>
+                    </span> resumes
+                </div>
             </h1>
 
-            <p className="max-w-md text-center text-base my-7">Create, edit and download professional resumes with AI-powered assistance.</p>
+            <p className="max-w-xl text-center text-lg md:text-xl my-8 text-slate-600 leading-relaxed">Create, edit, and download professional resumes in minutes with intelligent AI-powered assistance that helps you stand out.</p>
 
             {/* CTA Buttons */}
-            <div className="flex items-center gap-4 ">
-                <Link to='/app' className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors">
-                    Get started
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right ml-1 size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+                <Link to='/app' className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-10 py-4 flex items-center gap-2 transition-all shadow-xl shadow-blue-500/30 hover:shadow-purple-500/50 hover:scale-105 font-semibold text-base">
+                    Get started free
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                        <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                    </svg>
                 </Link>
-                <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-video size-5" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
-                    <span>Try demo</span>
+                <button className="group flex items-center gap-2 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all rounded-full px-8 py-4 text-slate-700 hover:text-blue-700 font-semibold text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play-circle" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <span>Watch demo</span>
                 </button>
             </div>
 
-            <p className="py-6 text-slate-600 mt-14">Trusting by leading brands, including</p>
+            <p className="py-8 text-slate-500 mt-16 text-sm font-medium tracking-wide uppercase">Trusted by leading brands</p>
 
-            <div className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4" id="logo-container">
-                {logos.map((logo, index) => <img key={index} src={logo} alt="logo" className="h-6 w-auto max-w-xs" />)}
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl w-full mx-auto py-6 opacity-60 grayscale hover:grayscale-0 transition-all" id="logo-container">
+                {logos.map((logo, index) => (
+                    <img key={index} src={logo} alt="company logo" className="h-8 w-auto max-w-xs hover:scale-110 transition-transform duration-300" />
+                ))}
             </div>
         </div>
     </div>
@@ -120,6 +155,25 @@ const Hero = () => {
 
             * {
                 font-family: 'Poppins', sans-serif;
+            }
+
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-fade-in {
+                animation: fade-in 0.8s ease-out;
+            }
+
+            .delay-1000 {
+                animation-delay: 1s;
             }
         `}
     </style>

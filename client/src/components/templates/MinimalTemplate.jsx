@@ -113,13 +113,49 @@ const MinimalTemplate = ({ data, accentColor }) => {
 
             {/* Skills */}
             {data.skills && data.skills.length > 0 && (
-                <section>
+                <section className="mb-10">
                     <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
                         Skills
                     </h2>
 
                     <div className="text-gray-700">
                         {data.skills.join(" • ")}
+                    </div>
+                </section>
+            )}
+
+            {/* Certifications & Achievements */}
+            {data.certifications && data.certifications.length > 0 && (
+                <section>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
+                        Certifications & Achievements
+                    </h2>
+
+                    <div className="space-y-4">
+                        {data.certifications.map((cert, index) => (
+                            <div key={index}>
+                                <div className="flex justify-between items-baseline mb-1">
+                                    <h3 className="text-lg font-medium">{cert.name}</h3>
+                                    {cert.issue_date && (
+                                        <span className="text-sm text-gray-500">
+                                            {formatDate(cert.issue_date)}
+                                            {cert.expiry_date && ` - ${formatDate(cert.expiry_date)}`}
+                                        </span>
+                                    )}
+                                </div>
+                                {cert.issuing_organization && (
+                                    <p className="text-gray-600 mb-2">{cert.issuing_organization}</p>
+                                )}
+                                {cert.credential_id && (
+                                    <p className="text-sm text-gray-500">Credential ID: {cert.credential_id}</p>
+                                )}
+                                {cert.credential_url && (
+                                    <a href={cert.credential_url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline">
+                                        View Credential
+                                    </a>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </section>
             )}
