@@ -6,8 +6,9 @@ const Footer = () => {
 
 <footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-40">
         <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
-            <a href="#">
-                <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
+            <a href="/" className="flex items-center gap-1.5">
+                <span className="font-semibold text-slate-800 text-lg">Skilio.</span>
+                <span className="w-2 h-2 bg-green-600 rounded-full"></span>
             </a>
             <div>
                 <p className="text-slate-800 font-semibold">Product</p>

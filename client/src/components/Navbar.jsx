@@ -18,8 +18,9 @@ const Navbar = () => {
   return (
     <div className='shadow bg-white'>
       <nav className='flex items-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-slate-800 transition-all'>
-        <Link to='/'>
-            <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
+        <Link to='/' className="flex items-center gap-1.5">
+            <span className="font-semibold text-slate-800 text-lg">Skilio.</span>
+            <span className="w-2 h-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full"></span>
         </Link>
         <div className='flex items-center gap-4 text-sm'>
             <p className='max-sm:hidden'>Hi, {user?.name}</p>

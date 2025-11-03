@@ -154,6 +154,44 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     </div>
                 </section>
             )}
+
+            {/* Certifications & Achievements */}
+            {data.certifications && data.certifications.length > 0 && (
+                <section className="mb-6">
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
+                        CERTIFICATIONS & ACHIEVEMENTS
+                    </h2>
+
+                    <div className="space-y-3">
+                        {data.certifications.map((cert, index) => (
+                            <div key={index} className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="font-semibold text-gray-900">{cert.name}</h3>
+                                    {cert.issuing_organization && (
+                                        <p className="text-gray-700">{cert.issuing_organization}</p>
+                                    )}
+                                    {cert.credential_id && (
+                                        <p className="text-sm text-gray-600">ID: {cert.credential_id}</p>
+                                    )}
+                                    {cert.credential_url && (
+                                        <a href={cert.credential_url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline">
+                                            View Credential
+                                        </a>
+                                    )}
+                                </div>
+                                <div className="text-sm text-gray-600 text-right">
+                                    {cert.issue_date && (
+                                        <p>Issued: {formatDate(cert.issue_date)}</p>
+                                    )}
+                                    {cert.expiry_date && (
+                                        <p>Expires: {formatDate(cert.expiry_date)}</p>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
         </div>
     );
 }
