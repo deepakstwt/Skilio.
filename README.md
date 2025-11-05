@@ -44,7 +44,7 @@ Whether you're a job seeker looking to create your first resume or a professiona
 
 ### Landing Page
 <div align="center">
-  <img src="screenshots/landing-page.jpg" alt="Skilio Landing Page" width="800"/>
+  <img src="screenshots/landing-page.jpeg" alt="Skilio Landing Page" width="800"/>
   <p><em>Modern, responsive landing page with AI-powered resume builder features</em></p>
 </div>
 
