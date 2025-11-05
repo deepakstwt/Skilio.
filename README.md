@@ -23,7 +23,6 @@
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Environment Variables](#environment-variables)
 - [Running the Project](#running-the-project)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
@@ -166,41 +165,6 @@ Before you begin, ensure you have the following installed:
    cd ../server
    npm install
    ```
-
----
-
-## 🔐 Environment Variables
-
-### **Backend (.env in `/server` directory)**
-
-Create a `.env` file in the `server` directory with the following variables:
-
-```env
-# Server Port (optional, defaults to 3000)
-PORT=3000
-
-# MongoDB Connection String
-MONGODB_URI=your_mongodb_connection_string
-
-# JWT Secret Key
-JWT_SECRET=your_jwt_secret_key
-
-# OpenAI API Configuration
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_BASE_URL=https://api.openai.com/v1
-
-# ImageKit Configuration (optional, for image uploads)
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
-```
-
-### **Frontend (.env in `/client` directory)**
-
-Create a `.env` file in the `client` directory with the following variable:
-
-```env
-# Backend API URL
-VITE_BASE_URL=http://localhost:3000/api
-```
 
 ---
 
