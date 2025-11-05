@@ -19,6 +19,7 @@
 
 - [About](#about)
 - [Features](#features)
+- [Upcoming Features](#upcoming-features)
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -56,8 +57,6 @@ Whether you're a job seeker looking to create your first resume or a professiona
 ### 🤖 **AI-Powered Features**
 - AI-powered resume enhancement and optimization
 - Smart content suggestions
-- ATS-friendly keyword recommendations (coming soon)
-- Job recommendations (coming soon)
 
 ### 💾 **Export & Storage**
 - **PDF Export**: Download your resume as a professional PDF
@@ -78,6 +77,37 @@ Whether you're a job seeker looking to create your first resume or a professiona
 - Secure authentication with JWT
 - Password hashing with bcrypt
 - Protected routes and API endpoints
+
+---
+
+## 🚀 Upcoming Features
+
+We're continuously working on improving Skilio! Here's what's coming next:
+
+### 🎯 **Job Recommendations**
+- **AI-Powered Matching**: Get personalized job recommendations based on your skills, experience, and career goals
+- **Real-time Updates**: Receive notifications about new opportunities that match your profile
+- **Industry Insights**: Access valuable insights about job market trends and requirements
+- **Smart Matching**: Advanced algorithms match you with opportunities that align perfectly with your profile
+
+### 📝 **ATS-Friendly Keyword Suggestions**
+- **Keyword Analysis**: Get intelligent suggestions for industry-relevant keywords
+- **ATS Optimization**: Optimize your resume to pass Applicant Tracking Systems (ATS)
+- **Industry-Specific**: Tailored keyword suggestions based on your target job and industry
+- **Real-time Feedback**: See how your resume scores with ATS systems
+
+### 💡 **Additional Planned Features**
+- **Resume Analytics**: Track views and performance metrics for your resumes
+- **Cover Letter Builder**: Create professional cover letters to accompany your resumes
+- **Portfolio Integration**: Link your portfolio and GitHub projects directly to your resume
+- **Collaboration Tools**: Share resumes with mentors or colleagues for feedback
+- **Multi-language Support**: Create resumes in multiple languages
+- **Mobile App**: Native mobile applications for iOS and Android
+- **Advanced Customization**: More template options and customization features
+- **Resume Sharing**: Generate shareable links for your resumes
+- **Version History**: Track changes and revert to previous versions of your resume
+
+Stay tuned for these exciting updates! 🎉
 
 ---
 
