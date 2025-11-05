@@ -103,57 +103,83 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+    <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden'>
+      {/* Animated Background Elements */}
+      <div className='fixed inset-0 overflow-hidden pointer-events-none'>
+        <div className='absolute top-0 -left-40 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse'></div>
+        <div className='absolute top-1/2 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000'></div>
+        <div className='absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-br from-indigo-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-2000'></div>
+      </div>
+
+      {/* Subtle Grid Pattern */}
+      <div 
+        className='fixed inset-0 opacity-[0.02] pointer-events-none'
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
+      ></div>
+
+      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
         
         {/* Header Section */}
-        <div className='mb-10'>
-          <div className='mb-8'>
-            <h1 className='text-4xl sm:text-5xl font-bold text-slate-900 mb-3'>
-              Welcome back, <span className='text-purple-600'>{user?.name || 'User'}</span>
+        <div className='mb-12'>
+          <div className='mb-10'>
+            <div className='inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-full mb-6 shadow-sm'>
+              <div className='w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse'></div>
+              <span className='text-xs font-semibold text-slate-600 uppercase tracking-wider'>Dashboard</span>
+            </div>
+            <h1 className='text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-4 leading-tight'>
+              Welcome back,{' '}
+              <span className='bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient'>
+                {user?.name || 'User'}
+              </span>
             </h1>
-            <p className='text-slate-500 text-lg'>Manage and create your professional resumes</p>
+            <p className='text-slate-600 text-xl font-medium'>Manage and create your professional resumes with ease</p>
           </div>
 
           {/* Stats Cards */}
-          <div className='grid grid-cols-1 sm:grid-cols-3 gap-5'>
+          <div className='grid grid-cols-1 sm:grid-cols-3 gap-6'>
               {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               
               // Get gradient background based on stat color
               const getStatGradient = () => {
-                if (stat.color === 'from-blue-500 to-cyan-500') return 'from-blue-50/80 to-cyan-50/80';
-                if (stat.color === 'from-purple-500 to-pink-500') return 'from-purple-50/80 to-pink-50/80';
-                if (stat.color === 'from-indigo-500 to-purple-500') return 'from-indigo-50/80 to-purple-50/80';
-                return 'from-slate-50 to-white';
+                if (stat.color === 'from-blue-500 to-cyan-500') return 'from-blue-500/10 via-cyan-500/5 to-transparent';
+                if (stat.color === 'from-purple-500 to-pink-500') return 'from-purple-500/10 via-pink-500/5 to-transparent';
+                if (stat.color === 'from-indigo-500 to-purple-500') return 'from-indigo-500/10 via-purple-500/5 to-transparent';
+                return 'from-slate-500/10 to-transparent';
+              };
+
+              const getIconGradient = () => {
+                if (stat.color === 'from-blue-500 to-cyan-500') return 'from-blue-500 to-cyan-500';
+                if (stat.color === 'from-purple-500 to-pink-500') return 'from-purple-500 to-pink-500';
+                return 'from-indigo-500 to-purple-500';
               };
               
               return (
                 <div 
                   key={index} 
-                  className={`bg-gradient-to-br ${getStatGradient()} rounded-3xl p-8 border-2 border-slate-200/50 hover:border-blue-400/60 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-300 cursor-default group backdrop-blur-sm`}
+                  className={`group relative bg-white/70 backdrop-blur-xl rounded-3xl p-8 border border-slate-200/60 hover:border-slate-300/80 hover:shadow-2xl hover:shadow-blue-500/10 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 cursor-default overflow-hidden`}
                 >
-                  <div className='flex items-center justify-between mb-5'>
-                    <div 
-                      className='p-4 rounded-2xl transition-all group-hover:scale-110 group-hover:rotate-6'
-                      style={{ 
-                        background: stat.color === 'from-blue-500 to-cyan-500' ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(6, 182, 212, 0.18))' :
-                                  stat.color === 'from-purple-500 to-pink-500' ? 'linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(236, 72, 153, 0.18))' :
-                                  'linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(168, 85, 247, 0.18))'
-                      }}
-                    >
-                      <IconComponent 
-                        className='size-7'
-                        style={{ 
-                          color: stat.color === 'from-blue-500 to-cyan-500' ? '#3b82f6' :
-                                 stat.color === 'from-purple-500 to-pink-500' ? '#a855f7' :
-                                 '#6366f1'
-                        }} 
-                      />
+                  {/* Animated gradient background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${getStatGradient()} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  {/* Decorative corner accent */}
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${getIconGradient()} opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  <div className='relative z-10'>
+                    <div className='flex items-center justify-between mb-6'>
+                      <div 
+                        className={`p-4 rounded-2xl bg-gradient-to-br ${getIconGradient()} shadow-lg shadow-blue-500/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl`}
+                      >
+                        <IconComponent className='size-7 text-white' />
+                      </div>
+                      <div className='w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse'></div>
                     </div>
+                    <p className='text-5xl font-black text-slate-900 mb-3 group-hover:scale-105 transition-transform duration-500 tracking-tight'>{stat.value}</p>
+                    <p className='text-sm font-bold text-slate-500 uppercase tracking-widest'>{stat.label}</p>
                   </div>
-                  <p className='text-4xl font-extrabold text-slate-900 mb-3 group-hover:scale-105 transition-transform duration-300'>{stat.value}</p>
-                  <p className='text-sm font-semibold text-slate-600 uppercase tracking-wide'>{stat.label}</p>
                 </div>
               );
             })}
@@ -161,21 +187,23 @@ const Dashboard = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className='flex flex-wrap gap-4 mb-10'>
+        <div className='flex flex-wrap gap-4 mb-12'>
           <button 
             onClick={()=> setShowCreateResume(true)} 
-            className='group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-semibold'
+            className='group relative flex items-center gap-3 px-8 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white rounded-2xl shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-500 hover:scale-[1.05] hover:-translate-y-1 active:scale-[0.98] font-bold text-base overflow-hidden'
           >
-            <div className='p-2 bg-white/25 rounded-lg group-hover:bg-white/35 transition-colors'>
+            {/* Animated shine effect */}
+            <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
+            <div className='relative p-2.5 bg-white/20 rounded-xl group-hover:bg-white/30 group-hover:rotate-12 transition-all duration-500'>
               <PlusIcon className='size-5'/>
             </div>
-            <span>Create New Resume</span>
+            <span className='relative'>Create New Resume</span>
           </button>
           <button 
             onClick={()=> setShowUploadResume(true)} 
-            className='group flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 text-slate-700 hover:text-purple-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 font-semibold'
+            className='group relative flex items-center gap-3 px-8 py-5 bg-white/80 backdrop-blur-xl border-2 border-slate-200/80 hover:border-purple-400/60 hover:bg-white text-slate-700 hover:text-purple-700 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-500 hover:scale-[1.05] hover:-translate-y-1 active:scale-[0.98] font-bold text-base'
           >
-            <div className='p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors'>
+            <div className='p-2.5 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl group-hover:from-purple-200 group-hover:to-pink-200 group-hover:rotate-12 transition-all duration-500'>
               <UploadCloudIcon className='size-5 text-purple-600'/>
             </div>
             <span>Upload Existing Resume</span>
@@ -185,84 +213,78 @@ const Dashboard = () => {
         {/* Resumes Grid */}
         {allResumes.length > 0 ? (
           <>
-            <div className='flex items-center gap-4 mb-6'>
-              <h2 className='text-2xl font-bold text-slate-900'>Your Resumes</h2>
-              <div className='flex-1 h-px bg-slate-200'></div>
-              <span className='text-sm font-medium text-slate-500 bg-slate-100 px-4 py-1.5 rounded-full'>{allResumes.length} {allResumes.length === 1 ? 'resume' : 'resumes'}</span>
+            <div className='flex items-center gap-4 mb-8'>
+              <h2 className='text-3xl font-black text-slate-900'>Your Resumes</h2>
+              <div className='flex-1 h-0.5 bg-gradient-to-r from-slate-200 via-blue-200 to-purple-200 rounded-full'></div>
+              <span className='text-sm font-bold text-slate-600 bg-white/80 backdrop-blur-sm border border-slate-200/60 px-5 py-2 rounded-full shadow-sm'>{allResumes.length} {allResumes.length === 1 ? 'resume' : 'resumes'}</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {allResumes.map((resume, index)=>{
                 const baseColor = colors[index % colors.length];
                 const isBlue = baseColor === '#3b82f6' || baseColor === '#6366f1';
                 const isPurple = baseColor === '#8b5cf6' || baseColor === '#a855f7';
                 const textColor = isBlue ? '#2563eb' : isPurple ? '#9333ea' : '#6366f1';
                 
-                // Get gradient class based on color
-                const getGradientClass = () => {
-                  if (baseColor === '#3b82f6') return 'from-blue-50 to-white';
-                  if (baseColor === '#6366f1') return 'from-indigo-50 to-white';
-                  if (baseColor === '#8b5cf6') return 'from-purple-50 to-white';
-                  if (baseColor === '#a855f7') return 'from-violet-50 to-white';
-                  return 'from-slate-50 to-white';
+                // Get gradient classes
+                const getGradientClasses = () => {
+                  if (baseColor === '#3b82f6') return { bg: 'from-blue-500/10 to-blue-50/50', icon: 'from-blue-500 to-blue-600', border: 'border-blue-300/40' };
+                  if (baseColor === '#6366f1') return { bg: 'from-indigo-500/10 to-indigo-50/50', icon: 'from-indigo-500 to-indigo-600', border: 'border-indigo-300/40' };
+                  if (baseColor === '#8b5cf6') return { bg: 'from-purple-500/10 to-purple-50/50', icon: 'from-purple-500 to-purple-600', border: 'border-purple-300/40' };
+                  if (baseColor === '#a855f7') return { bg: 'from-violet-500/10 to-violet-50/50', icon: 'from-violet-500 to-violet-600', border: 'border-violet-300/40' };
+                  return { bg: 'from-slate-500/10 to-slate-50/50', icon: 'from-slate-500 to-slate-600', border: 'border-slate-300/40' };
                 };
                 
-                // Get hover border color matching the card's primary color
-                const getHoverBorder = () => {
-                  if (baseColor === '#3b82f6') return 'hover:border-blue-400';
-                  if (baseColor === '#6366f1') return 'hover:border-indigo-400';
-                  if (baseColor === '#8b5cf6') return 'hover:border-purple-400';
-                  if (baseColor === '#a855f7') return 'hover:border-violet-400';
-                  return 'hover:border-slate-400';
-                };
+                const gradients = getGradientClasses();
                 
                 return (
                   <div 
                     key={index} 
                     onClick={()=> navigate(`/app/builder/${resume._id}`)} 
-                    className={`group relative bg-gradient-to-br ${getGradientClass()} rounded-2xl p-6 border-2 border-slate-200/50 ${getHoverBorder()} hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer overflow-hidden`}
+                    className={`group relative bg-white/80 backdrop-blur-xl rounded-3xl p-6 border ${gradients.border} hover:border-opacity-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:scale-[1.03] hover:-translate-y-2 active:scale-[0.98] transition-all duration-500 cursor-pointer overflow-hidden`}
                   >
-                    <div className='flex flex-col h-full'>
+                    {/* Animated gradient background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${gradients.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                    
+                    {/* Decorative corner element */}
+                    <div className={`absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br ${gradients.icon} opacity-0 group-hover:opacity-10 rounded-full blur-2xl transition-opacity duration-500`}></div>
+                    
+                    <div className='relative z-10 flex flex-col h-full'>
                       {/* Icon and Actions */}
-                      <div className='flex items-start justify-between mb-5'>
+                      <div className='flex items-start justify-between mb-6'>
                         <div 
-                          className='p-3.5 rounded-xl transition-transform group-hover:scale-110 group-hover:rotate-3'
-                          style={{
-                            background: isBlue ? 'rgba(59, 130, 246, 0.12)' : 
-                                       isPurple ? 'rgba(168, 85, 247, 0.12)' : 
-                                       'rgba(99, 102, 241, 0.12)'
-                          }}
+                          className={`p-4 rounded-2xl bg-gradient-to-br ${gradients.icon} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl`}
                         >
-                          <FilePenLineIcon className="size-5.5" style={{ color: textColor }}/>
+                          <FilePenLineIcon className="size-6 text-white"/>
                         </div>
                         <div 
                           onClick={e=> e.stopPropagation()} 
-                          className='flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200'
+                          className='flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0'
                         >
                           <button 
                             onClick={(e) => {e.stopPropagation(); setEditResumeId(resume._id); setTitle(resume.title)}} 
-                            className='p-1.5 hover:bg-blue-50 rounded-md transition-colors'
+                            className='p-2 hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-110'
                             title='Edit title'
                           >
-                            <PencilIcon className="size-3.5 text-slate-400 hover:text-blue-600"/>
+                            <PencilIcon className="size-4 text-slate-400 hover:text-blue-600"/>
                           </button>
                           <button 
                             onClick={(e) => {e.stopPropagation(); deleteResume(resume._id)}} 
-                            className='p-1.5 hover:bg-red-50 rounded-md transition-colors'
+                            className='p-2 hover:bg-red-50 rounded-xl transition-all duration-300 hover:scale-110'
                             title='Delete resume'
                           >
-                            <TrashIcon className="size-3.5 text-slate-400 hover:text-red-600"/>
+                            <TrashIcon className="size-4 text-slate-400 hover:text-red-600"/>
                           </button>
                         </div>
                       </div>
                       
                       {/* Title */}
-                      <h3 className='text-lg font-bold mb-auto line-clamp-2 group-hover:translate-x-1 transition-transform duration-300' style={{ color: textColor }}>
+                      <h3 className='text-xl font-black mb-auto line-clamp-2 group-hover:translate-x-1 transition-transform duration-500' style={{ color: textColor }}>
                         {resume.title}
                       </h3>
                       
                       {/* Date */}
-                      <div className='flex items-center gap-1.5 text-xs text-slate-500 mt-5 font-medium'>
-                        <Clock className='size-3.5' style={{ color: textColor }}/>
+                      <div className='flex items-center gap-2 text-xs text-slate-500 mt-6 font-bold'>
+                        <Clock className='size-4' style={{ color: textColor }}/>
                         <span>Updated {new Date(resume.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                       </div>
                     </div>
@@ -272,43 +294,50 @@ const Dashboard = () => {
             </div>
           </>
         ) : (
-          <div className='text-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200'>
-            <div className='inline-flex p-5 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl mb-6'>
-              <FileText className='size-14 text-blue-600'/>
-            </div>
-            <h3 className='text-2xl font-bold text-slate-900 mb-3'>No resumes yet</h3>
-            <p className='text-slate-600 mb-8 max-w-md mx-auto text-lg'>Get started by creating your first professional resume or uploading an existing one.</p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <button 
-                onClick={()=> setShowCreateResume(true)} 
-                className='px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all font-semibold shadow-lg shadow-blue-500/30 hover:scale-105 active:scale-95'
-              >
-                Create Resume
-              </button>
-              <button 
-                onClick={()=> setShowUploadResume(true)} 
-                className='px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-700 rounded-xl hover:border-purple-400 hover:bg-purple-50 transition-all font-semibold hover:scale-105 active:scale-95'
-              >
-                Upload Resume
-              </button>
+          <div className='relative text-center py-24 bg-white/70 backdrop-blur-xl rounded-3xl border-2 border-dashed border-slate-300/60 overflow-hidden'>
+            {/* Animated background elements */}
+            <div className='absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse'></div>
+            <div className='absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse delay-1000'></div>
+            
+            <div className='relative z-10'>
+              <div className='inline-flex p-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl mb-8 shadow-2xl shadow-blue-500/30'>
+                <FileText className='size-16 text-white'/>
+              </div>
+              <h3 className='text-4xl font-black text-slate-900 mb-4'>No resumes yet</h3>
+              <p className='text-slate-600 mb-10 max-w-md mx-auto text-lg font-medium'>Get started by creating your first professional resume or uploading an existing one.</p>
+              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                <button 
+                  onClick={()=> setShowCreateResume(true)} 
+                  className='group px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all font-bold text-base shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 overflow-hidden relative'
+                >
+                  <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000'></div>
+                  <span className='relative'>Create Resume</span>
+                </button>
+                <button 
+                  onClick={()=> setShowUploadResume(true)} 
+                  className='px-10 py-4 bg-white/80 backdrop-blur-xl border-2 border-slate-300 text-slate-700 rounded-2xl hover:border-purple-400 hover:bg-white transition-all font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 active:scale-95'
+                >
+                  Upload Resume
+                </button>
+              </div>
             </div>
           </div>
         )}
 
         {/* Coming Soon Features */}
-        <div className='mt-16 mb-8'>
-          <div className='flex items-center gap-4 mb-8'>
-            <h2 className='text-2xl font-bold text-slate-900'>Coming Soon</h2>
-            <div className='flex-1 h-px bg-slate-200'></div>
-            <span className='text-sm font-medium text-slate-500 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-1.5 rounded-full'>New Features</span>
+        <div className='mt-20 mb-8'>
+          <div className='flex items-center gap-4 mb-10'>
+            <h2 className='text-3xl font-black text-slate-900'>Coming Soon</h2>
+            <div className='flex-1 h-0.5 bg-gradient-to-r from-slate-200 via-purple-200 to-pink-200 rounded-full'></div>
+            <span className='text-sm font-bold text-slate-600 bg-white/80 backdrop-blur-sm border border-slate-200/60 px-5 py-2 rounded-full shadow-sm'>New Features</span>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             {/* Job Recommendations Card */}
-            <div className='group relative bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl p-8 border-2 border-blue-200/50 hover:border-blue-400/60 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-300 overflow-hidden'>
+            <div className='group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-blue-200/40 hover:border-blue-400/60 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.03] hover:-translate-y-2 transition-all duration-500 overflow-hidden'>
               {/* Decorative Background */}
-              <div className='absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl'></div>
-              <div className='absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-200/20 to-blue-200/20 rounded-full blur-2xl'></div>
+              <div className='absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000'></div>
+              <div className='absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-400/20 to-blue-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-1000'></div>
               
               <div className='relative z-10'>
                 <div className='flex items-start justify-between mb-6'>
@@ -339,10 +368,10 @@ const Dashboard = () => {
             </div>
 
             {/* ATS Keywords Suggestions Card */}
-            <div className='group relative bg-gradient-to-br from-purple-50 via-white to-pink-50 rounded-3xl p-8 border-2 border-purple-200/50 hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] transition-all duration-300 overflow-hidden'>
+            <div className='group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-purple-200/40 hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.03] hover:-translate-y-2 transition-all duration-500 overflow-hidden'>
               {/* Decorative Background */}
-              <div className='absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl'></div>
-              <div className='absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-200/20 to-purple-200/20 rounded-full blur-2xl'></div>
+              <div className='absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000'></div>
+              <div className='absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-pink-400/20 to-purple-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-1000'></div>
               
               <div className='relative z-10'>
                 <div className='flex items-start justify-between mb-6'>
@@ -375,8 +404,8 @@ const Dashboard = () => {
         </div>
 
         {showCreateResume && (
-          <form onSubmit={createResume} onClick={()=> setShowCreateResume(false)} className='fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
-            <div onClick={e => e.stopPropagation()} className='relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 border border-slate-100'>
+          <form onSubmit={createResume} onClick={()=> setShowCreateResume(false)} className='fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in'>
+            <div onClick={e => e.stopPropagation()} className='relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 border border-slate-200/60 animate-scale-in'>
               <div className='flex items-center justify-between mb-8'>
                 <div>
                   <h2 className='text-2xl font-bold text-slate-900 mb-1.5'>Create New Resume</h2>
@@ -411,8 +440,8 @@ const Dashboard = () => {
         }
 
         {showUploadResume && (
-          <form onSubmit={uploadResume} onClick={()=> setShowUploadResume(false)} className='fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
-            <div onClick={e => e.stopPropagation()} className='relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 border border-slate-100'>
+          <form onSubmit={uploadResume} onClick={()=> setShowUploadResume(false)} className='fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in'>
+            <div onClick={e => e.stopPropagation()} className='relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 border border-slate-200/60 animate-scale-in'>
               <div className='flex items-center justify-between mb-8'>
                 <div>
                   <h2 className='text-2xl font-bold text-slate-900 mb-1.5'>Upload Resume</h2>
@@ -488,8 +517,8 @@ const Dashboard = () => {
         }
 
         {editResumeId && (
-          <form onSubmit={editTitle} onClick={()=> setEditResumeId('')} className='fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4'>
-            <div onClick={e => e.stopPropagation()} className='relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 border border-slate-100'>
+          <form onSubmit={editTitle} onClick={()=> setEditResumeId('')} className='fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in'>
+            <div onClick={e => e.stopPropagation()} className='relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 border border-slate-200/60 animate-scale-in'>
               <div className='flex items-center justify-between mb-8'>
                 <div>
                   <h2 className='text-2xl font-bold text-slate-900 mb-1.5'>Edit Resume Title</h2>
