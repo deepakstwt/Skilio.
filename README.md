@@ -18,6 +18,7 @@
 ## 📋 Table of Contents
 
 - [About](#about)
+- [Screenshots](#screenshots)
 - [Features](#features)
 - [Upcoming Features](#upcoming-features)
 - [Tech Stack](#tech-stack)
@@ -36,6 +37,16 @@
 **Skilio** is a modern, full-stack resume builder platform that helps professionals create, edit, and optimize their resumes with AI-powered features. The platform offers a seamless user experience for building professional resumes that stand out in today's competitive job market.
 
 Whether you're a job seeker looking to create your first resume or a professional updating your existing one, Skilio provides the tools and templates you need to create a standout resume.
+
+---
+
+## 📸 Screenshots
+
+### Landing Page
+<div align="center">
+  <img src="screenshots/landing-page.jpg" alt="Skilio Landing Page" width="800"/>
+  <p><em>Modern, responsive landing page with AI-powered resume builder features</em></p>
+</div>
 
 ---
 
