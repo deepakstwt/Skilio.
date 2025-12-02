@@ -325,7 +325,7 @@ This project is licensed under the ISC License.
 
 ## 📞 Support
 
-For support, email support@skilio.com or open an issue in the repository.
+For support, email deepakprajapatiproplus@gmail.com or open an issue in the repository.
 
 ---
 
